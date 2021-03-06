@@ -70,8 +70,56 @@ public class solution143 {
      * 第二种方法
      * 找到中点，左半段和 翻转过的右半段进行合并
      *
-     * @param args
+     * @param head
      */
+
+    public void reorderListPLUS(ListNode head) {
+        if (head == null) {
+            return;
+        }
+        ListNode mid = middleNode(head);
+        ListNode l1 = head;
+        ListNode l2 = mid.next;
+        mid.next = null;
+        l2 = reversListNode(l2);
+        mergeList(l1, l2);
+    }
+
+    public ListNode middleNode(ListNode head){
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public ListNode reversListNode(ListNode head){
+        ListNode prevNode = null;
+        ListNode currNode = head;
+        while (currNode != null) {
+            ListNode temp = currNode.next;
+            currNode.next = prevNode;
+            prevNode = currNode;
+            currNode = temp;
+        }
+        return  prevNode;
+    }
+    public void mergeList(ListNode l1, ListNode l2) {
+        ListNode l1_tmp;
+        ListNode l2_tmp;
+        while (l1 != null && l2 != null) {
+            l1_tmp = l1.next;
+            l2_tmp = l2.next;
+
+            l1.next = l2;
+            l1 = l1_tmp;
+
+            l2.next = l1;
+            l2 = l2_tmp;
+        }
+    }
+
 
     public static void main(String[] args) {
         int x =5;
