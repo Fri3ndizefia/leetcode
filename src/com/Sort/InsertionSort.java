@@ -21,22 +21,23 @@ public class InsertionSort {
         if (sourceArray.length == 0) {
             return sourceArray;
         }
-
         int current;
-        for (int i = 0; i < sourceArray.length - 1; i++) {
-            current = sourceArray[i+1];
-            int preIndex = i;
-            while (preIndex > 0 && current < sourceArray[preIndex]) {
-                sourceArray[preIndex + 1] = sourceArray[preIndex]; // 往前进一位，因为有个数字要插进来前面了 那个数字就是current
-                preIndex--;
+        for (int i = 1; i < sourceArray.length; ++i) {
+            current = sourceArray[i];
+            int j = i - 1;
+            while (j >= 0 && sourceArray[j] > current) {
+                sourceArray[j + 1] = sourceArray[j];
+                --j;
             }
-            sourceArray[preIndex] = current;
+            if (j != i - 1) {
+                sourceArray[j + 1] = current;
+            }
         }
         return sourceArray;
     }
 
     public static void main(String[] args) {
-        int[] array = {3,4,5,2,6,2,1,1,7};
+        int[] array = {2,3,4,5,2,6,2,1,1,7};
         for (int i : insertionSort(array)) {
             System.out.println(i);
         }
