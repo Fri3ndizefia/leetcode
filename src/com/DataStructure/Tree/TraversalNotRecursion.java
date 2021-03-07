@@ -8,9 +8,6 @@ import java.util.*;
 
 public class TraversalNotRecursion {
 
-
-
-
     public class TreeNode {
         int val;
         TreeNode left;

@@ -1,7 +1,7 @@
 package com.Search;
 import java.util.Random;
 
-/*
+/**
 有序二叉树，已经排序好了的二叉树
 root节点不是最小值，是"中间值"
 左树小于右树
