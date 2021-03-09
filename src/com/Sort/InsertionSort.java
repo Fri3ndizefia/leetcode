@@ -16,29 +16,25 @@ package com.Sort;
  */
 public class InsertionSort {
 
-    public static int[] insertionSort(int[] sourceArray) {
-
-        if (sourceArray.length == 0) {
-            return sourceArray;
+    public static int[] insertionSorting(int[] nums) {
+        if (nums.length == 0) {
+            return nums;
         }
-        int current;
-        for (int i = 1; i < sourceArray.length; ++i) {
-            current = sourceArray[i];
-            int j = i - 1;
-            while (j >= 0 && sourceArray[j] > current) {
-                sourceArray[j + 1] = sourceArray[j];
+        for (int i = 1; i < nums.length; ++i) {
+            int temp = nums[i];
+            int j = i;
+            while (j > 0 && nums[j - 1] > temp) {
+                nums[j] = nums[j-1];
                 --j;
             }
-            if (j != i - 1) {
-                sourceArray[j + 1] = current;
-            }
+            nums[j] = temp;
         }
-        return sourceArray;
+        return nums;
     }
 
     public static void main(String[] args) {
         int[] array = {2,3,4,5,2,6,2,1,1,7};
-        for (int i : insertionSort(array)) {
+        for (int i : insertionSorting(array)) {
             System.out.println(i);
         }
     }
