@@ -1,5 +1,5 @@
 package com.Search;
-/*
+/**
 1. Sequential
 2. Ordered by increasing
 必须是排列好的，不然不能用
@@ -11,7 +11,8 @@ public class BinarySearch {
 
         if (low > high) {return -1;}
 
-        int mid = low + (high - low ) / 2;
+        //int mid = low + (high - low ) / 2;
+        int mid = low + high + 1 >>> 1; // 数字 >>> 1  就是 [n/2] 向下取整
         if (array[mid] == value) {
             return mid;
         }else if(array[mid] > value){
@@ -27,9 +28,9 @@ public class BinarySearch {
         int low = 0;
         int high = array.length - 1;
         while(low <= high){
-            int mid = low + ((high-low)) >> 1;
-            if( key == array[mid])
-            {
+            // int mid = low + (hight - low) / 2
+            int mid = low + high + 1 >>> 1; // 数字 >>> 1  就是 [n/2] 向下取整
+            if( key == array[mid]) {
                 return mid;
             }
             else if( key > array[mid]){
@@ -39,6 +40,11 @@ public class BinarySearch {
             }
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println(binarySearch(array,4));
     }
 
 
