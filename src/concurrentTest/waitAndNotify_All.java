@@ -1,4 +1,4 @@
-package concurrent;
+package concurrentTest;
 
 public class waitAndNotify_All {
     private static volatile Object resourceA = new Object();
