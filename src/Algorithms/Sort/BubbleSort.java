@@ -1,4 +1,4 @@
-package com.Sort;
+package Algorithms.Sort;
 
 
 /**

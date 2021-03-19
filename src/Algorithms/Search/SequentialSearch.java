@@ -1,4 +1,4 @@
-package com.Search;
+package Algorithms.Search;
 
 public class SequentialSearch {
     public static int orderSearch(int key, int[] array){

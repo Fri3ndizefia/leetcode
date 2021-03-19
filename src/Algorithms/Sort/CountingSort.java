@@ -1,6 +1,5 @@
-package com.Sort;
+package Algorithms.Sort;
 
-import javax.swing.*;
 import java.util.Arrays;
 
 /**

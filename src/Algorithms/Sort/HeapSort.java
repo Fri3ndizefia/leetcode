@@ -1,4 +1,4 @@
-package com.Sort;
+package Algorithms.Sort;
 
 /**
  * 堆排序是对选择排序的一个优化

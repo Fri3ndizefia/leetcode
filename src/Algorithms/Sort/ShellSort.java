@@ -1,4 +1,4 @@
-package com.Sort;
+package Algorithms.Sort;
 
 /**
  * 插入排序的优化

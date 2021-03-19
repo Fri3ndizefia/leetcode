@@ -1,4 +1,4 @@
-package com.Search;
+package Algorithms.Search;
 /**
 1. Sequential
 2. Ordered by increasing

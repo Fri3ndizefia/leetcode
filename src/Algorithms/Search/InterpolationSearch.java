@@ -1,4 +1,4 @@
-package com.Search;
+package Algorithms.Search;
 /*
 Based on binary search
 Improved binary search actually.

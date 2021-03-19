@@ -1,4 +1,4 @@
-package com.Sort;
+package Algorithms.Sort;
 
 /**
 表现最稳定的 选择排序
