@@ -23,6 +23,6 @@ public class solution1827 {
         while (!headStack.isEmpty()) {
             tailStack.push(headStack.pop());
         }
-        return tailStack.isEmpty() ? null : tailStack.pop();
+        return tailStack.isEmpty() ? 0 : tailStack.pop();
     }
 }

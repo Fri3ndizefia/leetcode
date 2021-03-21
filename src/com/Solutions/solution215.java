@@ -1,7 +1,6 @@
 package com.Solutions;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 /**
@@ -73,6 +72,7 @@ public class solution215 {
         // 交换以后， [left, j-1] < pivot    nums[j] = pivot    [j+1, right] >= pivot
         return j;
     }
+
 
     public void swap(int[] nums, int index1, int index2) {
         int temp = nums[index1];
