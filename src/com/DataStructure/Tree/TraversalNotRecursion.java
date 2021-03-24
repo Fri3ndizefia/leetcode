@@ -52,23 +52,24 @@ public class TraversalNotRecursion {
         }
 
         // Pre Order Traversal without Recursion
+        // 高效率 前序遍历 非递归
         public List<Integer> preOrderTraversal(TreeNode root){
-            List<Integer> resultList = new ArrayList<>();
+            List<Integer> list = new ArrayList<>();
             Stack<TreeNode> treeStack = new Stack<>();
             if(root == null){
-                return resultList;
+                return list;
             }
             treeStack.push(root);
             while(!treeStack.isEmpty()){
                 TreeNode tempNode = treeStack.pop();
-                if(tempNode != null){
-                    resultList.add(tempNode.val); // 访问根结点
+                if(tempNode != null){ // 因为可能放入了null 节点进去，要进行排查
+                    list.add(tempNode.val); // 访问根结点
                     treeStack.push(tempNode.right); // 右孩子入栈 后出栈
                     treeStack.push(tempNode.left);  // 左孩子入栈 先出栈
                     // 下一次就会 先访问 左节点： 根，右入，左入，（左始终在右上面）
                 }
             }
-            return resultList;
+            return list;
         }
 
 
@@ -107,20 +108,52 @@ public class TraversalNotRecursion {
         }
 
         // 改进后的 更高效率中序遍历
+        // 高效率 中序遍历 非递归
         public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> list = new ArrayList<Integer>();
             Stack<TreeNode> stack = new Stack<TreeNode>();
             TreeNode curr = root;
 
             while (curr != null || !stack.empty()) {
+                /**
+                 * 不管什么，先把所有的左节点给push进去，直到没有了
+                 * 这样就把左节点全部放进栈中了
+                 */
                 while (curr != null) {
                     stack.add(curr);
+                    curr = curr.left;
+                }
+                curr = stack.pop();
+                /**
+                 * 弹出左节点开始
+                 * 值放入list中。
+                 * 下一步是curr的右节点。
+                 */
+                list.add(curr.val);
+                curr = curr.right;
+                /**
+                 * 再次进入循环的时候，会对右子树的左节点开始进行push
+                 * 要注意的是，每次push进去的左节点中是包含了根节点的，所以这里面
+                 * 没有对根作特别强调。但是根据list添加的顺序，不难发现是左 根 右的中序遍历。
+                 */
+            }
+            return list;
+        }
+
+        public List<Integer> inorder(TreeNode root){
+            List<Integer> list = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode curr = root;
+            while (curr != null || !stack.isEmpty()) {
+                while (curr != null) {
+                    stack.push(curr);
                     curr = curr.left;
                 }
                 curr = stack.pop();
                 list.add(curr.val);
                 curr = curr.right;
             }
+
             return list;
         }
 
@@ -140,7 +173,8 @@ public class TraversalNotRecursion {
                     visitedMap.put(tempNode, 1);
                     toBeVisitedStack.pop();
                     continue;
-                } else if (!((tempNode.left != null && visitedMap.get(tempNode.left) != null) || (tempNode.right != null && visitedMap.get(tempNode.right) != null))) {
+                } else if (!((tempNode.left != null && visitedMap.get(tempNode.left) != null) ||
+                        (tempNode.right != null && visitedMap.get(tempNode.right) != null))) {
                     // 左右孩子都被访问过了
                     resultList.add(tempNode.val );
                     toBeVisitedStack.pop();
@@ -167,6 +201,8 @@ public class TraversalNotRecursion {
 
         // 改进版，用一种类先序的遍历方法得到结果，但是用的是 根 右 左，然后把结果倒置一下，变成 左 右 根
         // Improved post order traversal
+        // 后序遍历 高效率 非递归实现
+        // 前序遍历（变种版）reverse 过来即可
         public List<Integer> postOrderTraversalImproved(TreeNode root) {
             Deque<TreeNode> stack = new LinkedList<>();
             // Double end queue

@@ -8,7 +8,7 @@ import java.util.Map;
  * 摩尔投票
  * 多数元素
  */
-public class solution169 {
+public class    solution169 {
     public int majorityElement(int[] nums) {
         int major = nums.length / 2;
         Map<Integer, Integer> map = new HashMap<Integer, Integer>();

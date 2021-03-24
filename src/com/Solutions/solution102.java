@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-/*
-层序遍历，广度优先搜索算法
-
+/**
+ *
+ * 层序遍历，广度优先搜索算法
+ *
+ * BFS输出
  */
 
 public class solution102 {
