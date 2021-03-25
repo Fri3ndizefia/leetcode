@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * DFS篇目
+ * 全排序类
  * 46 全排列
  * 给定一个没有重复数字的序列，返回其所有可能的序列.
  */
@@ -66,7 +67,7 @@ public class solution46 {
      * 剪枝
      * 通过剪枝提高搜索速度，提前返回进行回溯。
      */
-
+    //时间复杂度 N*N！
     public List<List<Integer>> permute2(int[] nums) {
         int len = nums.length;
         List<List<Integer>> res = new ArrayList<>();
