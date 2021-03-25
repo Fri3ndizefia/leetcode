@@ -1,7 +1,6 @@
 package javaLearning.SingletonPattern;
 
 import java.lang.reflect.Constructor;
-
 /**
  * 破解单例模式
  */

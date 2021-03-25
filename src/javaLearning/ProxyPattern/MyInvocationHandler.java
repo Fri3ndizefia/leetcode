@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 public class MyInvocationHandler implements InvocationHandler {
     Subject realSubject;
+    
 
     public MyInvocationHandler(Subject realSubject) {
         this.realSubject = realSubject;
