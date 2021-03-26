@@ -51,6 +51,76 @@ public class TraversalNotRecursion {
 
         }
 
+
+        public List<Integer> preorderT(TreeNode root) {
+            List<Integer> preOrderList = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            while (root != null || !stack.isEmpty()) {
+                while (root != null) {
+                    stack.push(root);
+                    preOrderList.add(root.val); // 根压入栈中
+                    root=root.left;
+                }
+                while (root == null && !stack.isEmpty()) {
+                    root = stack.pop().right; // 自底向上找到栈中根节点的第一个非空右孩子。
+                }
+            }
+            return preOrderList;
+        }
+
+        public List<Integer> inorderT(TreeNode root){
+            List<Integer> inOrderList = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            while (root != null || !stack.isEmpty()) {
+                while (root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                root = stack.pop();
+                inOrderList.add(root.val);
+                root = root.right;
+            }
+            return inOrderList;
+        }
+
+        // 左右根
+        public List<Integer> postorderT(TreeNode root) {
+            List<Integer> postOrderList = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode pre = null;
+            while (root != null || !stack.isEmpty()) {
+                while (root != null) {
+                    stack.push(root);
+                    root = root.left;
+                }
+                root = stack.peek();
+                if (root.right == null || root.right == pre) {
+                    pre = root ;
+                    postOrderList.add(stack.pop().val);
+                    root = null;
+                }else{
+                    root = root.right;
+                }
+            }
+            return postOrderList;
+        }
+
+        public List<Integer> postorderTTT(TreeNode root) {
+            List<Integer> list = new ArrayList<>();
+            Stack<TreeNode> stack = new Stack<>();
+            stack.push(root);
+            while (root != null || !stack.isEmpty()) {
+                TreeNode node = stack.pop();
+                if (node != null) {
+                    list.add(node.val);
+                    stack.push(node.left);
+                    stack.push(node.right);
+                }
+            }
+            return list;
+        }
+
+
         // Pre Order Traversal without Recursion
         // 高效率 前序遍历 非递归
         public List<Integer> preOrderTraversal(TreeNode root){
@@ -70,41 +140,6 @@ public class TraversalNotRecursion {
                 }
             }
             return list;
-        }
-
-
-        // In Order Traversal without Recursion
-        // 核心思路，一直找左，找到 最左节点 后，pop出来，放入visited，map（查重）
-        // 找到了最左，最后push 右
-        public List<Integer> inOrderTraversal(TreeNode root){
-            List<Integer> visitedList = new ArrayList<>();
-            Map<TreeNode, Integer> visitedNodeMap = new HashMap<>();
-            Stack<TreeNode> toBeVisitedNodes = new Stack<>();
-            if (root == null) {
-                return visitedList;
-            }
-            toBeVisitedNodes.push(root);
-            while (!toBeVisitedNodes.isEmpty()) {
-                TreeNode tempNode = toBeVisitedNodes.peek(); // peek() only take a look at the top. won't pop it
-                while (tempNode.left != null) { //左节点如果没有被访问过，则先访问左节点
-                    if (visitedNodeMap.get(tempNode.left) != null) { // 如果该左节点被访问过了，跳过
-                        break;
-                    }
-                    toBeVisitedNodes.push(tempNode.left); // 将要访问的左节点入栈
-                    tempNode = tempNode.left;
-                }
-                //找到最左，pop出去最左节点
-                tempNode = toBeVisitedNodes.pop();
-                //记录已找过的节点
-                visitedList.add(tempNode.val);
-                //查重，防止二次遍历
-                visitedNodeMap.put(tempNode, 1);
-                //右节点有的话，入栈。（最后遍历的就是右树
-                if (tempNode.right != null) {
-                    toBeVisitedNodes.push(tempNode.right);
-                }
-            }
-            return visitedList;
         }
 
         // 改进后的 更高效率中序遍历
@@ -140,6 +175,7 @@ public class TraversalNotRecursion {
             return list;
         }
 
+
         public List<Integer> inorder(TreeNode root){
             List<Integer> list = new ArrayList<>();
             Stack<TreeNode> stack = new Stack<>();
@@ -157,47 +193,6 @@ public class TraversalNotRecursion {
             return list;
         }
 
-        // Post Order Traversal
-        public List<Integer> postOrderTraversal(TreeNode root) {
-            List<Integer> resultList = new ArrayList<>();
-            if (root == null) {
-                return resultList;
-            }
-            Map<TreeNode, Integer> visitedMap = new HashMap<>();
-            Stack<TreeNode> toBeVisitedStack = new Stack<>();
-            toBeVisitedStack.push(root);
-            while (!toBeVisitedStack.isEmpty()) {
-                TreeNode tempNode = toBeVisitedStack.peek();
-                if (tempNode.left == null && tempNode.right == null) { // 左右节点都空，到了末端点了
-                    resultList.add(tempNode.val);
-                    visitedMap.put(tempNode, 1);
-                    toBeVisitedStack.pop();
-                    continue;
-                } else if (!((tempNode.left != null && visitedMap.get(tempNode.left) != null) ||
-                        (tempNode.right != null && visitedMap.get(tempNode.right) != null))) {
-                    // 左右孩子都被访问过了
-                    resultList.add(tempNode.val );
-                    toBeVisitedStack.pop();
-                    visitedMap.put(tempNode, 1);
-                    continue;
-                }
-                if (tempNode.left != null) {
-                    while (tempNode.left != null && visitedMap.get(tempNode.left) == null) {
-                        // 左孩子没有被访问过
-                        toBeVisitedStack.push(tempNode.left);
-                        tempNode = tempNode.left;
-                    }
-                }
-                if (tempNode.right != null) {
-                    while ( visitedMap.get(tempNode.right) == null) {
-                        // 右孩子没有被访问过
-                        toBeVisitedStack.push(tempNode.right);
-                        tempNode = tempNode.right;
-                    }
-                }
-            }
-            return resultList;
-        }
 
         // 改进版，用一种类先序的遍历方法得到结果，但是用的是 根 右 左，然后把结果倒置一下，变成 左 右 根
         // Improved post order traversal
