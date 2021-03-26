@@ -30,7 +30,8 @@ public class    solution169 {
 
 
     /**
-     * Boyer-Moore 投票算法
+     * Boyer-
+     * Moore 投票算法
      * candidate 候选众数
      * count 计数器
      * 当count为0的时候，下次遍历到的数就会让 candidate 等于 它

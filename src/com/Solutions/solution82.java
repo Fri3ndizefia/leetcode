@@ -1,5 +1,10 @@
 package com.Solutions;
 
+/**
+ * 删除链表中的重复元素
+ * 重复的全删除掉
+ */
+
 public class solution82 {
     public ListNode deleteDuplicates(ListNode node){
         ListNode head = new ListNode(0);
@@ -44,6 +49,25 @@ public class solution82 {
         } else{
             head.next = delete(next);
         }
+        return head;
+    }
+
+
+    public ListNode deleteDuplicates2(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+
+        ListNode next = head.next;
+        if(head.val == next.val){
+            while(next != null && head.val == next.val){
+                next = next.next;
+            }
+            head = deleteDuplicates(next);
+        }else{
+            head.next = deleteDuplicates(head.next);
+        }
+
         return head;
     }
 }
