@@ -32,7 +32,7 @@ public class SingletonObjectDCL {
             synchronized (SingletonObjectDCL.class) {
                 if (instance == null) {
                     instance = new SingletonObjectDCL();
-                }
+                 }
             }
         }
         return instance;
