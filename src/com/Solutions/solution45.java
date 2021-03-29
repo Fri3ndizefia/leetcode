@@ -8,9 +8,10 @@ package com.Solutions;
 public class solution45 {
     /**
      * 每次都能跳到终点，可以用贪心思想，从终点往出发点走
-     *
+     * 逆向思维
      * 这里 每次寻找到 能最终一下跳到终点的下标，把它的位置定在新的终点
      * 一直循环知道 position < 0
+     *
      *
      * 时间复杂度 n^2
      * @param nums
