@@ -25,9 +25,13 @@ public class QuickSort_ONLY {
          */
         quickSortRecursive(nums, i, q - 1);
         /**
-         * 对大于等于pivot的区域进行快速排序
+         * 对大于pivot的区域进行快速排序
          */
         quickSortRecursive(nums, q + 1, j);
+        /**
+         * pivot 定位之后，就不参与后续的计算了！
+         * 快速排序每次的排序都是让一个元素直接定位到属于它的位置了！
+         */
     }
 
     private static int partition(int[] nums, int i, int j) {
@@ -67,8 +71,8 @@ public class QuickSort_ONLY {
     }
 
     public static void main(String[] args){
-        int[] array = {63,81,43,54,37,84,45,97,50,87};
-        quickSort(array, 10);
+        int[] array = {5,1,1,2,0,0};
+        quickSort(array, 6);
         for(int i : array) System.out.println(i);
     }
 }
