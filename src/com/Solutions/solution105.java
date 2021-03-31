@@ -1,5 +1,8 @@
 package com.Solutions;
 
+/**
+ * 根据前序和中序遍历结果，重新构建二叉树
+ */
 public class solution105 {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         return build( preorder, 0, preorder.length -1,
